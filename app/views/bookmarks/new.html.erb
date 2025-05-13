@@ -1,0 +1,11 @@
+<div class="container-lg border form mt-4">
+  <h2>Create New Bookmark</h2>
+  <%= simple_form_for [@category, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :recipe %>
+    <div class="d-flex justify-content-between">
+    <%= f.button :submit, class: "btn btn-gradient mb-3" %>
+    <%= link_to "Cancel without saving", category_path(@category), class: "btn btn-gradient mb-3"  %>
+    </div>
+  <% end %>
+ </div>

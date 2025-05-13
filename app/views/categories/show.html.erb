@@ -1,2 +1,29 @@
-<h1>  <%= @category.name %> </h1>
-<%= link_to "Back to categories", categories_path  %>
+<div class="banner" style="background-image: url">
+ <div>
+  <h1>  <%= @category.name %> </h1>
+ </div>
+</div>
+<div class="container w-75">
+<div class="info-top d-flex justify-content-between m-3">
+  <h2>Recipes</h2>
+  <%= link_to 'Add a recipe', new_category_bookmark_path(@category), class: "btn btn-gradient" %>
+</div>
+</div>
+<div class="container">
+<div class="cards">
+
+<% @category.bookmarks.each do |bookmark| %>
+<div class="card card-recipe">
+ <img src=<%= bookmark.recipe.image_url %> class="card-img-top" alt=<%= bookmark.recipe.title %>>
+ <div class="card-body">
+  <h5 class="card-title"><%= bookmark.recipe.title %></h5>
+  <p class="card-text"><%= bookmark.recipe.description %></p>
+  <p class="card-text"><i class="fa-solid fa-comment"></i> <%= bookmark.comment %> <%= bookmark.recipe.rating %><i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
+  <%= link_to raw("<i class='fa-solid fa-trash'></i>"), bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+ </div>
+ </div>
+    <% end %>
+</div>
+  <%= link_to "Back to categories", categories_path, class:"btn btn-gradient"  %>
+  </div>
+</div>
